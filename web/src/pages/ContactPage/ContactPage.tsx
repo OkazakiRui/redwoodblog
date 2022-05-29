@@ -9,6 +9,7 @@ import {
   Submit,
   SubmitHandler,
   Label,
+  useForm,
 } from '@redwoodjs/forms'
 import {
   CreateContactMutation,
@@ -36,8 +37,11 @@ const ContactPage = () => {
   >(CREATE_CONTACT, {
     onCompleted: () => {
       toast.success('Thank you for your submission!')
+      formMethods.reset()
     },
   })
+
+  const formMethods = useForm({ mode: 'onBlur' })
 
   const onSubmit: SubmitHandler<FormValues> = (data) => {
     create({ variables: { input: data } })
@@ -49,7 +53,12 @@ const ContactPage = () => {
 
       <Toaster />
       {/* config={{ mode: 'onBlur' }} → リアルタイムでエラー表示 */}
-      <Form onSubmit={onSubmit} config={{ mode: 'onBlur' }} error={error}>
+      <Form
+        onSubmit={onSubmit}
+        config={{ mode: 'onBlur' }}
+        error={error}
+        formMethods={formMethods}
+      >
         <FormError error={error} wrapperClassName="form-error" />
 
         <Label name="name" errorClassName="rw_error">
@@ -69,6 +78,10 @@ const ContactPage = () => {
           name="email"
           validation={{
             required: true,
+            pattern: {
+              value: /^[^@]+@[^.]+\..+$/,
+              message: 'Please enter a valid email address',
+            },
           }}
           errorClassName="rw_error"
         />
