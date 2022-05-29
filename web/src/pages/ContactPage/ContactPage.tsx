@@ -24,7 +24,8 @@ const ContactPage = () => {
     <>
       <MetaTags title="Contact" description="Contact page" />
 
-      <Form onSubmit={onSubmit}>
+      {/* config={{ mode: 'onBlur' }} → リアルタイムでエラー表示 */}
+      <Form onSubmit={onSubmit} config={{ mode: 'onBlur' }}>
         <Label name="name" errorClassName="rw_error">
           Name
         </Label>
@@ -40,7 +41,13 @@ const ContactPage = () => {
         </Label>
         <TextField
           name="email"
-          validation={{ required: true }}
+          validation={{
+            required: true,
+            pattern: {
+              value: /^[^@]+@[^.]+\..+$/,
+              message: 'Please enter a valid email address',
+            },
+          }}
           errorClassName="rw_error"
         />
         <FieldError name="email" className="rw_error" />
