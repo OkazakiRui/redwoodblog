@@ -3,6 +3,7 @@ import { toast, Toaster } from '@redwoodjs/web/toast'
 import {
   FieldError,
   Form,
+  FormError,
   TextField,
   TextAreaField,
   Submit,
@@ -48,7 +49,9 @@ const ContactPage = () => {
 
       <Toaster />
       {/* config={{ mode: 'onBlur' }} → リアルタイムでエラー表示 */}
-      <Form onSubmit={onSubmit} config={{ mode: 'onBlur' }}>
+      <Form onSubmit={onSubmit} config={{ mode: 'onBlur' }} error={error}>
+        <FormError error={error} wrapperClassName="form-error" />
+
         <Label name="name" errorClassName="rw_error">
           Name
         </Label>
