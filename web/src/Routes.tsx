@@ -1,6 +1,8 @@
 import { Router, Route, Set } from '@redwoodjs/router'
 import PostsLayout from 'src/layouts/PostsLayout'
 import BlogLayout from 'src/layouts/BlogLayout'
+import ArticlePage from './pages/ArticlePage/ArticlePage'
+import ContactPage from './pages/ContactPage/ContactPage'
 
 const Routes = () => {
   return (
@@ -14,6 +16,7 @@ const Routes = () => {
       <Set wrap={BlogLayout}>
         <Route path="/article/{id:Int}" page={ArticlePage} name="article" />
         <Route path="/about" page={AboutPage} name="about" />
+        <Route path="/contact" page={ContactPage} name="contact" />
         <Route path="/" page={HomePage} name="home" />
       </Set>
       <Route notfound page={NotFoundPage} />
