@@ -1,1 +1,11 @@
 @import url(https://cdn.jsdelivr.net/npm/water.css@2/out/water.css);
+
+.rw_error{
+  color: #EF4444;
+  margin-top: -.5rem;
+  margin-bottom: 1rem;
+  display: block;
+}
+input.rw_error,textarea.rw_error{
+  border: 1px solid #EF4444;
+}
