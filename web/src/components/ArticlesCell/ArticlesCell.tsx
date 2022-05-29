@@ -3,8 +3,11 @@ import type { CellSuccessProps, CellFailureProps } from '@redwoodjs/web'
 
 export const QUERY = gql`
   query ArticlesQuery {
-    articles {
+    articles: posts {
       id
+      title
+      body
+      createdAt
     }
   }
 `
